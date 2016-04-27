@@ -37,8 +37,20 @@ public class TicTacToeApplication {
             while (game.gameOver().equals("notOver")) {
                 if (game.currentMarker == game.userMarker) {
                     //USER TURN
-                    System.out.println("It's your turn! Enter a spot for your token.");
-                    int spot = scanner.nextInt();
+                    int spot=-1;
+                    do {
+                        try {
+                            System.out.println("It's your turn! Enter a spot for your token. ");
+                            spot = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid Input, try again");
+                        }
+                        scanner.nextLine(); // clears the buffer
+                    } while (spot <= -1);
+
+
+
+
                     while (!game.playTurn(spot)) {
                         System.out.println(" Try again. " + spot + " is invalid. This spot \n" +
                                 " is already taken or is out of range");
